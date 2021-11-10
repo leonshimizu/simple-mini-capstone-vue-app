@@ -13,6 +13,7 @@
     <ol>
       <li v-for="product in products" v-bind:key="product.id">
         {{ product }}
+        <button v-on:click="updateFunction">Update Product</button>
       </li>
     </ol>
     <!-- <p>{{ products }}</p> -->
@@ -63,6 +64,16 @@ export default {
           console.log(response.data);
           this.products.push(response.data);
         })
+    },
+    updateFunction: function() {
+      console.log("in the update function");
+      axios
+        .patch('http://localhost:3000/products/229', {
+          name: "Update Check"
+        })
+          .then(response => {
+            console.log(response.data);
+          })
     }
   }
 };
