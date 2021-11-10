@@ -12,11 +12,23 @@
     <p><input type="text" v-model="supplier_id"></p>
     <ol>
       <li v-for="product in products" v-bind:key="product.id">
-        {{ product }}
+        {{ product.id }}
+        {{ product.name }}
+        <button v-on:click="showFunction(product)">Show More Info</button>
         <button v-on:click="updateFunction">Update Product</button>
         <button v-on:click="deleteFunction">Delete Product</button>
       </li>
     </ol>
+    <dialog id="show-product">
+      <form method="dialog">
+        <!-- {{ currentProduct }} -->
+        <p>Name: {{ currentProduct.name }}</p>
+        <p>Price: {{ currentProduct.price }}</p>
+        <p>Description: {{ currentProduct.description }}</p>
+        <p>Supplier ID: {{ currentProduct.supplier_id }}</p>
+        <button>Close</button>
+      </form>
+    </dialog>
     <!-- <p>{{ products }}</p> -->
   </div>
 </template>
@@ -34,7 +46,8 @@ export default {
       name: "Name",
       price: "Price",
       description: "Description",
-      supplier_id: "Supplier ID"
+      supplier_id: "Supplier ID",
+      currentProduct: {}
     };
   },
   created: function() {
@@ -83,6 +96,12 @@ export default {
           .then(response => {
             console.log(response.data);
           })
+    },
+    showFunction: function(theProduct) {
+      console.log(theProduct);
+      this.currentProduct = theProduct;
+      console.log("in the show function");
+      document.querySelector("#show-product").showModal()
     }
   }
 };
