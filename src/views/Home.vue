@@ -2,6 +2,7 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <h1>{{ firstMessage }}</h1>
+    <button v-on:click="doSomething">Doing Something</button>
   </div>
 </template>
 
@@ -16,6 +17,10 @@ export default {
     };
   },
   created: function() {},
-  methods: {}
+  methods: {
+    doSomething: function() {
+      console.log("doing something");
+    }
+  }
 };
 </script>
