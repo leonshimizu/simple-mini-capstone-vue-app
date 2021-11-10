@@ -14,6 +14,7 @@
       <li v-for="product in products" v-bind:key="product.id">
         {{ product }}
         <button v-on:click="updateFunction">Update Product</button>
+        <button v-on:click="deleteFunction">Delete Product</button>
       </li>
     </ol>
     <!-- <p>{{ products }}</p> -->
@@ -71,6 +72,14 @@ export default {
         .patch('http://localhost:3000/products/229', {
           name: "Update Check"
         })
+          .then(response => {
+            console.log(response.data);
+          })
+    },
+    deleteFunction: function() {
+      console.log("in the delete function");
+      axios 
+        .delete('http://localhost:3000/products/228')
           .then(response => {
             console.log(response.data);
           })
