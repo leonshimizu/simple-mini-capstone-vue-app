@@ -110,13 +110,18 @@ export default {
 };
 </script>
 
-// updateFunction: function() {
-//       console.log("in the update function");
-//       axios
-//         .patch('http://localhost:3000/products/229', {
-//           name: "Update Check"
-//         })
-//           .then(response => {
-//             console.log(response.data);
-//           })
-//     },
+//  updateRecipe: function(theRecipe) { // can use params this way as well
+//       console.log('updating recipe.....');
+//       var recipeEditParams = {
+//         title: theRecipe.title,
+//         ingredients: theRecipe.ingredients,
+//         directions: theRecipe.directions,
+//         prep_time: theRecipe.prep_time,
+//         image_url: theRecipe.image_url,
+//         chef: theRecipe.chef,
+//       };
+      
+//       // axios.patch("http://localhost:3000/recipes/" + theRecipe.id, recipeEditParams).then(response => {
+//       axios.patch(`http://localhost:3000/recipes/${theRecipe.id}`, recipeEditParams).then(response => {
+//         console.log(response.data);
+//       });
