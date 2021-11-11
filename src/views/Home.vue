@@ -91,6 +91,8 @@ export default {
         .delete(`http://localhost:3000/products/${theProduct.id}`)
           .then(response => {
             console.log(response.data);
+            var index = this.products.indexOf(theProduct);
+            this.products.splice(index, 1);
           })
     },
     showFunction: function(theProduct) {
