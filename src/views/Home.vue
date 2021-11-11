@@ -16,7 +16,7 @@
         {{ product.name }}
         <button v-on:click="showFunction(product)">Show More Info</button>
         <!-- <button v-on:click="updateFunction">Update Product</button> -->
-        <button v-on:click="deleteFunction">Delete Product</button>
+        <!-- <button v-on:click="deleteFunction">Delete Product</button> -->
       </li>
     </ol>
     <dialog id="show-product">
@@ -25,7 +25,8 @@
         <p>Price: <input type="text" v-model="currentProduct.price"></p>
         <p>Description: <input type="text" v-model="currentProduct.description"></p>
         <p>Supplier ID: <input type="text" v-model="currentProduct.supplier_id"></p>
-        <button v-on:click="updateProduct(currentProduct)">Update</button>
+        <button v-on:click="updateFunction(currentProduct)">Update</button>
+        <button v-on:click="deleteFunction(currentProduct)">Delete</button>
         <button>Close</button>
       </form>
     </dialog>
@@ -78,7 +79,7 @@ export default {
           this.products.push(response.data);
         })
     },
-    updateProduct: function(theProduct) {
+    updateFunction: function(theProduct) {
       console.log("in the update function");
       console.log(theProduct.name)
       axios
@@ -90,10 +91,11 @@ export default {
             console.log(response.data);
           })
     },
-    deleteFunction: function() {
+    deleteFunction: function(theProduct) {
+      console.log(theProduct.name)
       console.log("in the delete function");
       axios 
-        .delete('http://localhost:3000/products/228')
+        .delete('http://localhost:3000/products/' + theProduct.id)
           .then(response => {
             console.log(response.data);
           })
