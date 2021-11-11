@@ -95,7 +95,7 @@ export default {
       console.log(theProduct.name)
       console.log("in the delete function");
       axios 
-        .delete('http://localhost:3000/products/' + theProduct.id)
+        .delete(`http://localhost:3000/products/${theProduct.id}`)
           .then(response => {
             console.log(response.data);
           })
