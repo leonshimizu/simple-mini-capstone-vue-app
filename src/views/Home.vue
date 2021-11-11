@@ -5,18 +5,11 @@
     <button v-on:click="doSomething">Doing Something</button>
     <hr>
     <h2>Here are all the Products:</h2>
-    <button v-on:click="createFunction">Create Product</button>
-    <p><input type="text" v-model="name"></p>
-    <p><input type="text" v-model="price"></p>
-    <p><input type="text" v-model="description"></p>
-    <p><input type="text" v-model="supplier_id"></p>
     <ol>
       <li v-for="product in products" v-bind:key="product.id">
         {{ product.id }}
         {{ product.name }}
         <button v-on:click="showFunction(product)">Show More Info</button>
-        <!-- <button v-on:click="updateFunction">Update Product</button> -->
-        <!-- <button v-on:click="deleteFunction">Delete Product</button> -->
       </li>
     </ol>
     <dialog id="show-product">
