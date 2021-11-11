@@ -15,21 +15,20 @@
         {{ product.id }}
         {{ product.name }}
         <button v-on:click="showFunction(product)">Show More Info</button>
-        <button v-on:click="updateFunction">Update Product</button>
+        <!-- <button v-on:click="updateFunction">Update Product</button> -->
         <button v-on:click="deleteFunction">Delete Product</button>
       </li>
     </ol>
     <dialog id="show-product">
       <form method="dialog">
-        <!-- {{ currentProduct }} -->
-        <p>Name: {{ currentProduct.name }}</p>
-        <p>Price: {{ currentProduct.price }}</p>
-        <p>Description: {{ currentProduct.description }}</p>
-        <p>Supplier ID: {{ currentProduct.supplier_id }}</p>
+        <p>Name: <input type="text" v-model="currentProduct.name"></p>
+        <p>Price: <input type="text" v-model="currentProduct.price"></p>
+        <p>Description: <input type="text" v-model="currentProduct.description"></p>
+        <p>Supplier ID: <input type="text" v-model="currentProduct.supplier_id"></p>
+        <button v-on:click="updateProduct(currentProduct)">Update</button>
         <button>Close</button>
       </form>
     </dialog>
-    <!-- <p>{{ products }}</p> -->
   </div>
 </template>
 
@@ -79,11 +78,13 @@ export default {
           this.products.push(response.data);
         })
     },
-    updateFunction: function() {
+    updateProduct: function(theProduct) {
       console.log("in the update function");
+      console.log(theProduct.name)
       axios
-        .patch('http://localhost:3000/products/229', {
-          name: "Update Check"
+        .patch('http://localhost:3000/products/' + theProduct.id, {
+          name: theProduct.name,
+          supplier_id: theProduct.supplier_id
         })
           .then(response => {
             console.log(response.data);
@@ -106,3 +107,14 @@ export default {
   }
 };
 </script>
+
+// updateFunction: function() {
+//       console.log("in the update function");
+//       axios
+//         .patch('http://localhost:3000/products/229', {
+//           name: "Update Check"
+//         })
+//           .then(response => {
+//             console.log(response.data);
+//           })
+//     },
